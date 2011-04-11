@@ -27,7 +27,7 @@ my $engines = [
  
 get '/' => sub {
      my $self = shift;
-     my $title = 'Template with ep, how can I use "foreach"';
+     my $title = '__gfx__++';
    
     $self->render(
         handler => 'tx',
@@ -45,7 +45,6 @@ get '/welcome' => sub {
 
 get '/foo' => 'foo';
 get '/hello';
-
 get '/fuga' => sub {
     my $self = shift;
     $self->stash(some => 'Elona');
@@ -53,15 +52,6 @@ get '/fuga' => sub {
 };
 
 get '/with_block' => 'block';
-
-get '/xslate' => sub {
-    my $self = shift;
-    $self->render(
-        handler => 'tx',
-        title   => 'Template with Xslate!',
-        engines => $engines
-    );
-} => 'xslate';
 
 get '/:hoge/xslate' => sub { 
     my $self = shift;
@@ -88,9 +78,6 @@ get '/:hoge/xslate' => sub {
 app->start;
 
 __DATA__
-@@ moge.html.ep
-how are you?
-
 @@ fuga.html.ep
 some is <%= $some %>,
 any is <%= $any %>
@@ -102,9 +89,6 @@ any is <%= $any %>
 <%= link_to Elonian => 'fuga' %>
 <%= link_to Reload  => 'foo' %>
 <%= link_to Cybozu  => 'http://cybozu.co.jp' %>
-
-@@ hello.html.ep
-Hello, World!
 
 @@ layouts/default.html.ep
 <!doctype html><html>
