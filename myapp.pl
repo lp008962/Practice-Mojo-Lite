@@ -10,29 +10,32 @@ my $app = MyApp->startup;
 
 plugin 'xslate_renderer';
 
-#get '/' => sub {
-#     my $self = shift;
-#     my $title = 'Template with ep, how can I use "foreach"';
-#     my $engines = [
-#        { name => 'Google',
-#            url  => 'http://google.com/'
-#        },
-#        { name => 'Yahoo Japan',
-#        url  => 'http://yahoo.co.jp/'
-#        },
-#        { name => 'Baidu',
-#        url  => 'http://baidu.co.jp/'        
-#        },
-#        { name => 'LiveDoor',
-#        url  => 'http://www.livedoor.com/'
-#        }
-#    ];
-#    
-#    $self->render(title => $title, engines => $engines);
-#
-#    );
-#   
-#} => 'index';
+my $engines = [
+    { name => 'Google',
+        url  => 'http://google.com/'
+    },
+    { name => 'Yahoo Japan',
+    url  => 'http://yahoo.co.jp/'
+    },
+    { name => 'Baidu',
+    url  => 'http://baidu.co.jp/'        
+    },
+    { name => 'LiveDoor',
+    url  => 'http://www.livedoor.com/'
+    }
+];
+ 
+get '/' => sub {
+     my $self = shift;
+     my $title = 'Template with ep, how can I use "foreach"';
+   
+    $self->render(
+        handler => 'tx',
+        title   => 'Template with Xslate!',
+        engines => $engines,
+    );
+   
+} => 'xslate';
 
 get '/welcome' => sub {
   my $self = shift;
@@ -56,20 +59,7 @@ get '/xslate' => sub {
     $self->render(
         handler => 'tx',
         title   => 'Template with Xslate!',
-        engines   => [
-            { name => 'Google',
-              url  => 'http://google.com/'
-            },
-            { name => 'Yahoo Japan',
-              url  => 'http://yahoo.co.jp/'
-            },
-            { name => 'Baidu',
-              url  => 'http://baidu.co.jp/'
-            },
-            { name => 'LiveDoor',
-              url  => 'http://www.livedoor.com/'
-            }
-        ]
+        engines => $engines
     );
 } => 'xslate';
 
@@ -111,7 +101,7 @@ any is <%= $any %>
 <%= link_to Hello   => 'hello' %>
 <%= link_to Elonian => 'fuga' %>
 <%= link_to Reload  => 'foo' %>
-<%= link_to Cybozu  => 'https://www.hn-office.com/cgi-bin/cybozu6/ag.cgi' %>
+<%= link_to Cybozu  => 'http://cybozu.co.jp' %>
 
 @@ hello.html.ep
 Hello, World!
