@@ -2,11 +2,19 @@
 
 : override content -> {
 <div class="wrapper">
-  <h2>Pushing content</h2>
+  <h1>Pushing content</h1>
+  <h2>Engines</h2>
   <ul>
   : for $engines -> $engine {
     <li><a href='<: $engine.url :>'><: $engine.name :></a></li>
   : }
   </ul>
+  <h2>Tw</h2>
+  <ul>
+  : for $tw -> $tweet {
+    <li><: $tweet.name :> : <: $tweet.twt :></li>
+  : }
+  </ul>
+ </ul>
 </div>
 : }
